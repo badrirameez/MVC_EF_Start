@@ -1,15 +1,18 @@
-﻿@{
-  Layout = null;
+﻿@model Student
+@{
+    Layout = null;
 }
 
 <!DOCTYPE html>
 
 <html>
 <head>
-  <meta name="viewport" content="width=device-width" />
-  <title>LINQOperations</title>
+    <meta name="viewport" content="width=device-width" />
+    <title>LINQOperations</title>
 </head>
 <body>
-  <h2>LINQ operations successful</h2>
+    <h2>LINQ operations successful</h2>
+   Student ID: @Model.studentID <br />
+   Student Name : @Model.studentName
 </body>
 </html>

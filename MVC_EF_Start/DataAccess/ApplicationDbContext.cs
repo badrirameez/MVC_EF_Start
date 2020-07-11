@@ -7,7 +7,10 @@ namespace MVC_EF_Start.DataAccess
   {
     public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options) { }
 
-    public DbSet<Company> Companies { get; set; }
-    public DbSet<Quote> Quotes { get; set; }
-  }
+   //public DbSet<Company> Companies { get; set; }
+   // public DbSet<Quote> Quotes { get; set; }
+    public DbSet<Student> Students { get; set; }
+    public DbSet<Course> Courses { get; set; }
+    public DbSet<Enrollment> Enrollments { get; set; }
+    }
 }

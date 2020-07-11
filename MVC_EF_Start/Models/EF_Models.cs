@@ -31,9 +31,29 @@ namespace MVC_EF_Start.Models
     public string label { get; set; }
     public float changeOverTime { get; set; }
     public string symbol { get; set; }
-  }
+    public Company company { get; set; }
+}
+    public class Student
+    {
+        public int studentID { get; set; }
+        public string studentName { get; set; }
+        public List<Enrollment> enrollments { get; set; }
+    }
+    public class Course
+    {
+        public int courseID { get; set; }
+        public string courseName { get; set; }
+        public List<Enrollment> enrollments { get; set; }
+    }
+    public class Enrollment
+    {
+        public int enrollmentID { get; set; }
+        public Course course  { get; set; }
+        public Student student { get; set; }
+        public string grade { get; set; }
 
-  public class ChartRoot
+    }
+    public class ChartRoot
   {
     public Quote[] chart { get; set; }
   }

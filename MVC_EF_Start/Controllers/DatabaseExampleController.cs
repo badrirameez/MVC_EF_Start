@@ -26,7 +26,7 @@ namespace MVC_EF_Start.Controllers
     public async Task<ViewResult> DatabaseOperations()
     {
       // CREATE operation
-      Company MyCompany = new Company();
+      /*Company MyCompany = new Company();
       MyCompany.symbol = "MCOB";
       MyCompany.name = "ISM";
       MyCompany.date = "ISM";
@@ -49,6 +49,8 @@ namespace MVC_EF_Start.Controllers
       MyCompanyQuote1.label = "Nov 23";
       MyCompanyQuote1.changeOverTime = 0.56F;
       MyCompanyQuote1.symbol = "MCOB";
+      MyCompanyQuote1.company = MyCompany;
+
 
       Quote MyCompanyQuote2 = new Quote();
       //MyCompanyQuote1.EquityId = 123;
@@ -65,55 +67,79 @@ namespace MVC_EF_Start.Controllers
       MyCompanyQuote2.label = "Nov 23";
       MyCompanyQuote2.changeOverTime = 0.56F;
       MyCompanyQuote2.symbol = "MCOB";
+      MyCompanyQuote2.company = MyCompany;
 
       dbContext.Companies.Add(MyCompany);
       dbContext.Quotes.Add(MyCompanyQuote1);
       dbContext.Quotes.Add(MyCompanyQuote2);
+*/
 
-      dbContext.SaveChanges();
-      
-      // READ operation
-      Company CompanyRead1 = dbContext.Companies
+
+
+            Student student = new Student();
+          //  student.studentID = 1;
+            student.studentName = "Shiva";
+
+            Course course = new Course();
+         //   course.courseID = 1;
+            course.courseName = "Distributed systems";
+
+            Enrollment enrollment = new Enrollment();
+            enrollment.course = course;
+            enrollment.student = student;
+            //enrollment.enrollmentID = 1;
+            //enrollment.course.courseID = 1;
+            //enrollment.student.studentID = 1;
+            enrollment.grade = "A";
+
+            dbContext.Students.Add(student);
+            dbContext.Courses.Add(course);
+            dbContext.Enrollments.Add(enrollment);
+
+            dbContext.SaveChanges();
+
+/*            // READ operation
+            Company CompanyRead1 = dbContext.Companies
                               .Where(c => c.symbol == "MCOB")
                               .First();
 
-      Company CompanyRead2 = dbContext.Companies
+            Company CompanyRead2 = dbContext.Companies
                               .Include(c => c.Quotes)
                               .Where(c => c.symbol == "MCOB")
                               .First();
 
-      // UPDATE operation
-      CompanyRead1.iexId = "MCOB";
-      dbContext.Companies.Update(CompanyRead1);
-      //dbContext.SaveChanges();
-      await dbContext.SaveChangesAsync();
+              // UPDATE operation
+              CompanyRead1.iexId = "MCOB";
+              dbContext.Companies.Update(CompanyRead1);
+              //dbContext.SaveChanges();
+              await dbContext.SaveChangesAsync();*/
       
       // DELETE operation
       //dbContext.Companies.Remove(CompanyRead1);
       //await dbContext.SaveChangesAsync();
 
-      return View();
+      return View(student);
     }
 
     public ViewResult LINQOperations()
     {
-      Company CompanyRead1 = dbContext.Companies
-                                      .Where(c => c.symbol == "MCOB")
+     Student courseRead1 = dbContext.Students
+                                      .Where(c => c.studentID == 7)
                                       .First();
 
-      Company CompanyRead2 = dbContext.Companies
-                                      .Include(c => c.Quotes)
-                                      .Where(c => c.symbol == "MCOB")
-                                      .First();
+            /* Company CompanyRead2 = dbContext.Companies
+                                             .Include(c => c.Quotes)
+                                             .Where(c => c.symbol == "MCOB")
+                                             .First();
 
-      Quote Quote1 = dbContext.Companies
-                              .Include(c => c.Quotes)
-                              .Where(c => c.symbol == "MCOB")
-                              .FirstOrDefault()
-                              .Quotes
-                              .FirstOrDefault();
-
-      return View();
+             Quote Quote1 = dbContext.Companies
+                                     .Include(c => c.Quotes)
+                                     .Where(c => c.symbol == "MCOB")
+                                     .FirstOrDefault()
+                                     .Quotes
+                                     .FirstOrDefault();*/
+          /*  ///http://localhost:42590/DatabaseExample/LINQOperations*/
+            return View(courseRead1);
     }
 
   }
