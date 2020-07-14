@@ -78,7 +78,7 @@ namespace MVC_EF_Start.Controllers
 
             Student student = new Student();
           //  student.studentID = 1;
-            student.studentName = "Shiva";
+            student.studentName = "Rameez";
 
             Course course = new Course();
          //   course.courseID = 1;
@@ -124,7 +124,7 @@ namespace MVC_EF_Start.Controllers
     public ViewResult LINQOperations()
     {
      Student courseRead1 = dbContext.Students
-                                      .Where(c => c.studentID == 7)
+                                      .Where(c => c.studentID == 1)
                                       .First();
 
             /* Company CompanyRead2 = dbContext.Companies
@@ -138,8 +138,7 @@ namespace MVC_EF_Start.Controllers
                                      .FirstOrDefault()
                                      .Quotes
                                      .FirstOrDefault();*/
-          /*  ///http://localhost:42590/DatabaseExample/LINQOperations*/
-            return View(courseRead1);
+                      return View(courseRead1);
     }
 
   }
