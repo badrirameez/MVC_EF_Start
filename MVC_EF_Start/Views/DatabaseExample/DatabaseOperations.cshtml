@@ -12,7 +12,18 @@
 </head>
 <body>
     <h2>Database operations successful</h2>
-  Inserted in to DB -> @Model.studentID : @Model.studentName : 
+    Inserted in to DB -> @Model.studentID : @Model.studentName :
 
+
+    <form asp-controller="DatabaseExample" asp-action="LINQOperationsDel" method="post">
+        <table>
+            <tr>
+                <td>Enter Student ID to delete: </td>
+                <td><input asp-for="studentID" /></td>
+            </tr>
+        </table>
+        <button type="submit">Delete</button>
+
+    </form>
 </body>
 </html>

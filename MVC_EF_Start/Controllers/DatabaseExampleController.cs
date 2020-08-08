@@ -78,7 +78,7 @@ namespace MVC_EF_Start.Controllers
 
             Student student = new Student();
           //  student.studentID = 1;
-            student.studentName = "Rameez";
+            student.studentName = "Shiva";
 
             Course course = new Course();
          //   course.courseID = 1;
@@ -120,11 +120,12 @@ namespace MVC_EF_Start.Controllers
 
       return View(student);
     }
-
-    public ViewResult LINQOperations()
+        [HttpPost]
+        public IActionResult LINQOperations(Student student)
     {
-     Student courseRead1 = dbContext.Students
-                                      .Where(c => c.studentID == 1)
+
+     Student courseRead2 = dbContext.Students
+                                      .Where(c => c.studentID == student.studentID)
                                       .First();
 
             /* Company CompanyRead2 = dbContext.Companies
@@ -138,8 +139,57 @@ namespace MVC_EF_Start.Controllers
                                      .FirstOrDefault()
                                      .Quotes
                                      .FirstOrDefault();*/
-                      return View(courseRead1);
+                      return View(courseRead2);
     }
 
-  }
+      public IActionResult LINQOperations()
+        {
+            Student courseRead1 = dbContext.Students
+                                             .Where(c => c.studentID == 1)
+                                             .First();
+
+            /* Company CompanyRead2 = dbContext.Companies
+                                             .Include(c => c.Quotes)
+                                             .Where(c => c.symbol == "MCOB")
+                                             .First();
+
+             Quote Quote1 = dbContext.Companies
+                                     .Include(c => c.Quotes)
+                                     .Where(c => c.symbol == "MCOB")
+                                     .FirstOrDefault()
+                                     .Quotes
+                                     .FirstOrDefault();*/
+            return View(courseRead1);
+        }
+
+        [HttpPost]
+        public IActionResult LINQOperationsDel(Student student)
+        {
+
+            Student StudentDel = dbContext.Students
+                                             .Where(c => c.studentID == student.studentID)
+                                             .First();
+            Enrollment enrollment = new Enrollment();
+            Enrollment EnrollDel = dbContext.Enrollments
+                                 .Where(c => c.student == StudentDel)
+                                 .First();
+            dbContext.Enrollments.Remove(EnrollDel);
+            dbContext.Students.Remove(StudentDel);
+            dbContext.SaveChanges();
+
+            /* Company CompanyRead2 = dbContext.Companies
+                                             .Include(c => c.Quotes)
+                                             .Where(c => c.symbol == "MCOB")
+                                             .First();
+
+             Quote Quote1 = dbContext.Companies
+                                     .Include(c => c.Quotes)
+                                     .Where(c => c.symbol == "MCOB")
+                                     .FirstOrDefault()
+                                     .Quotes
+                                     .FirstOrDefault();*/
+            return View(StudentDel);
+        }
+
+    }
 }

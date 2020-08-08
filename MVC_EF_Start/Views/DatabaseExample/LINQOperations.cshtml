@@ -15,5 +15,15 @@
     <h2>LINQ operations successful</h2>
     Student ID from the database: @Model.studentID <br />
     Student Name from the database: @Model.studentName <br />
+
+    <form asp-controller="DatabaseExample" asp-action="LINQOperations" method="post">
+        <table>
+            <tr>
+                <td>Enter Student ID: </td>
+                <td><input asp-for="studentID" /></td>
+            </tr>
+        </table>
+        <button type="submit">Submit</button>
+    </form>
 </body>
 </html>
